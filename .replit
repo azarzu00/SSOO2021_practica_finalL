@@ -1,2 +1,2 @@
 language = "c"
-run = "rn"
+run = "gcc main.c -o a.out -lpthread"
