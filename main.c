@@ -1,5 +1,8 @@
 /*   COMANDOS PARA MANDAR LAS SEÑALES AL PROGRAMA CUANDO
-     SE ESTA EJECUTANDO UWU UWU UWU UWU UWU UWU
+
+      a.out
+
+      ps -ef
 
       kill -s SIGUSR1 pid
       kill -s SIGUSR2 pid
@@ -26,21 +29,33 @@ int contadorClientes = 0;
 int numClientesAscensor = 0;
 int contadorIdClientes = 1;
 bool ascensor;
+bool terminado = false;
+int logs=0;
 //semaforos
 pthread_mutex_t semaforo, semaforoFichero, maquinas;
 pthread_t hiloClientes;
 
-int recepcionistas[3];
+int recepcionistas1;
+int recepcionistas2;
+int recepcionistasVip;
+
 int maquinasCheckIn[5];
 FILE * logFile;
 
 void *nuevoCliente(void *arg);
 void writeLogMessage(char *id, char *msg);
-// void *accionesRecepcionista1(void *arg);
-// void *accionesRecepcionista2(void *arg);
-// void *accionesRecepcionistaVip(void *arg);
+
+void *accionesRecepcionista1(void *arg);
+void *accionesRecepcionista2(void *arg);
+void *accionesRecepcionistaVip(void *arg);
+// // // // // // // // char contadorLog();
+
 void creacionClienteNormal();
 void creacionClienteVip();
+void finalPrograma();
+int calculaAleatorios(int min, int max);
+void accionesCliente();
+int posicionCliente(int identidad);
 
 
 struct Cliente{
@@ -53,28 +68,25 @@ struct Cliente{
 
 
 int main(int argc, char *argv[]){
-
-  // cuando se llame SIGUSR1
-  //     pthread_create(dhuifhowejifiowe, "NOVIP")
-  //  ¡cuando se llame SIGUSR2
-  //     pthread_create(dhuifhowejifiowe, "VIP")
-
-  
-
-  // system("rm logsPractica");
-  // system("touch logsPractica");
+ 
+  system("rm logsPractica");
+  system("touch logsPractica");
 
   
   //HILOS
   pthread_t recepcionista1,recepcionista2,recepcionistaVip;
   pthread_attr_t tattr;
   
+  printf("asdf");
   
   
-  signal(SIGUSR1, &creacionClienteNormal );
-  signal(SIGUSR2, &creacionClienteVip );
+  while(!terminado){
+    signal(SIGUSR1, &creacionClienteNormal );
+    signal(SIGUSR2, &creacionClienteVip );
+    signal(SIGTERM, &finalPrograma);
+  }
 
-  sleep(40);
+  writeLogMessage("1", "Fin del programa.");
 
   //recepcionistas 
   // pthread_create(&recepcionista1, NULL, accionesRecepcionista1, "Ejecuta recepcionista1?");
@@ -87,7 +99,7 @@ int main(int argc, char *argv[]){
 
 
 //LOG Y EJEMPLOS
-  writeLogMessage("1", "buenas ASDFASDFASDFtardes");
+  writeLogMessage("1", "buenas tardes miguel ANGEL");
   // pthread_mutex_init( &semaforo, NULL);
     return 0;
 }
@@ -105,44 +117,32 @@ void writeLogMessage(char *id, char *msg) {
   fclose(logFile);
 }
 
-// // SIGUSR1
-// crearCliente(1) vip
 
-// SIGUSR2
+void finalPrograma(){
+  
+  terminado = true;
 
-// crearCliente(0) no vip
-
-
-
-/* sR1
-
-if sR1
-
-//signal o sigaction SIGUSR1, cliente normal.
-int pthread_create (hilo, 1 ,void *(*start)(void *),void* arg); 
-
-else sR2
-
-int pthread_create (crearCliente, 2 ,void *(*start)(void *),void* arg);  */
+}
 
 void creacionClienteNormal(){
   
-  printf("estamos aqui miguel");
-  pthread_create(&hiloClientes, NULL, nuevoCliente , (void *)0);
+  int vip = 0;
+  pthread_create(&hiloClientes, NULL, nuevoCliente , &vip);
 
 }
 
 void creacionClienteVip(){
 
-  pthread_create(&hiloClientes, NULL, nuevoCliente , (void *)1);
-  printf("Cliente vip creado");
+  
+  int vip=1;
+  pthread_create(&hiloClientes, NULL, nuevoCliente , &vip);
+
 
 }
 
 void *nuevoCliente(void *arg){
 
     if(contadorClientes<20){
-
 
         if(*(int *)arg == 1){     //1 = CLIENTE VIP
 
@@ -152,7 +152,10 @@ void *nuevoCliente(void *arg){
           listaClientes[contadorClientes - 1].atendido = false;
           listaClientes[contadorClientes - 1].esVip= true;       
           listaClientes[contadorClientes - 1].ascensor = false;
-          printf("Cliente vip creado");
+          contadorClientes++;
+          writeLogMessage("1", "Cliente vip ha llegado");
+
+          accionesCliente();
 
         }else{                    //0 = CLIENTE NORMAL
 
@@ -162,14 +165,103 @@ void *nuevoCliente(void *arg){
           listaClientes[contadorClientes - 1].atendido = false;
           listaClientes[contadorClientes - 1].esVip= false;
           listaClientes[contadorClientes - 1].ascensor = false;
-          
-          printf("Cliente normal creado");
+          contadorClientes++;
+          writeLogMessage("1", "Cliente normal ha llegado");
+
+          accionesCliente(listaClientes[contadorClientes - 1].id);
         }
           
     }else{
         //llamada para salir del hilo
-        printf("Está el hotel lleno");
-    }
+        writeLogMessage("1", "El hotel esta lleno");
+    } 
+}
+
+void accionesCliente(int identidad) {
+  
+
+  if(listaClientes[posicionCliente(identidad)].esVip==false){
+      writeLogMessage("1", "Un nuevo cliente normal ha entradado");
+  }else{
+       writeLogMessage("1", "Un nuevo cliente vip ha entrado");  
+  }
+  
+  int eleccion = calculaAleatorios(1, 10);
+  
+
+  if (eleccion == 1) {      
+    
+    //  Van directamente a maquinas
 
     
+  } else {    
+    
+    eleccion = calculaAleatorios(1, 10);
+    
+    if(eleccion==2 || eleccion == 3){   //Se cansan de esperar y se vaan a maquinas
+    
+
+    } else if (eleccion==4){            //Se cansa de esperar y se marcha 
+
+    
+
+
+
+
+
+    } else {    
+
+        eleccion = calculaAleatorios( 1, 20);
+
+        if(eleccion == 1) {             //Se cansan, van al baño y se marcha del hotel
+
+          
+        } else {                        //Los que se quedan definitivamente y van con los recepcionistas
+
+
+          
+
+          
+
+          
+
+          
+        }
+    } 
+ 
+  }
+
+//LLAMADARECEPCIONISTA(ID);
+
+
+
 }
+
+
+int posicionCliente(int identidad) {
+
+  for(int i=0; i<20; i++){
+   if(listaClientes[i].id==identidad){
+     return i;
+   }
+  }
+  return -1;
+}
+
+
+int calculaAleatorios(int min, int max) {
+  return rand() % (max-min+1) + min;
+}
+
+// // // // // // // // char contadorLog(){
+
+// // // // // // // //   char cadena[] = "";
+
+// // // // // // // //   //itoa();
+
+// // // // // // // //   return cadena;
+// // // // // // // // }
+
+
+
+ 
