@@ -32,31 +32,16 @@ bool ascensor;
 bool terminado = false;
 int logs=0;
 //semaforos
-pthread_mutex_t semaforo, semaforoFichero, maquinas;
+pthread_mutex_t semaforoCliente, semaforoFichero, maquinas;
 pthread_t hiloClientes;
-
+//Recepcionistas
 int recepcionistas1;
 int recepcionistas2;
 int recepcionistasVip;
-
 int maquinasCheckIn[5];
-FILE * logFile;
-
-void *nuevoCliente(void *arg);
-void writeLogMessage(char *id, char *msg);
-
-void *accionesRecepcionista1(void *arg);
-void *accionesRecepcionista2(void *arg);
-void *accionesRecepcionistaVip(void *arg);
-// // // // // // // // char contadorLog();
-
-void creacionClienteNormal();
-void creacionClienteVip();
-void finalPrograma();
-int calculaAleatorios(int min, int max);
-void accionesCliente();
-int posicionCliente(int identidad);
-
+//Clientes
+int ordenEntradaClientes[20] = {0, 0, 0, 0, 0, 0, 0, 0,0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+int numeroCola = 0;
 
 struct Cliente{
   int  id;
@@ -65,10 +50,29 @@ struct Cliente{
   bool ascensor;
 } listaClientes[20];
 
+FILE * logFile;
+
+//Funciones
+void *nuevoCliente(void *arg);
+void writeLogMessage(char *id, char *msg);
+void *accionesRecepcionista1(void *arg);
+void *accionesRecepcionista2(void *arg);
+void *accionesRecepcionistaVip(void *arg);
+void creacionClienteNormal();
+void creacionClienteVip();
+void finalPrograma();
+int calculaAleatorios(int min, int max);
+void accionesCliente();
+int posicionCliente(int identidad);
+void agregarCola(int identidad);
+
+
+
+
 
 
 int main(int argc, char *argv[]){
- 
+    
   system("rm logsPractica");
   system("touch logsPractica");
 
@@ -76,8 +80,10 @@ int main(int argc, char *argv[]){
   //HILOS
   pthread_t recepcionista1,recepcionista2,recepcionistaVip;
   pthread_attr_t tattr;
+    
+  pthread_mutex_init(&semaforoCliente, NULL); 
   
-  printf("asdf");
+ 
   
   
   while(!terminado){
@@ -86,23 +92,28 @@ int main(int argc, char *argv[]){
     signal(SIGTERM, &finalPrograma);
   }
 
+  pthread_mutex_destroy(&semaforoCliente); 
   writeLogMessage("1", "Fin del programa.");
+
+  
 
   //recepcionistas 
   // pthread_create(&recepcionista1, NULL, accionesRecepcionista1, "Ejecuta recepcionista1?");
   // pthread_create(&recepcionista2, NULL, accionesRecepcionista2, "Ejecuta recepcionista2?");
   // pthread_create(&recepcionistaVip, NULL, accionesRecepcionistaVip, "Ejecuta recepcionistavip?");
+    
 
+    for (int i = 0; i<20; i++) {
 
+      printf("%d", ordenEntradaClientes[i]);
 
+    }
 
-
-
-//LOG Y EJEMPLOS
-  writeLogMessage("1", "buenas tardes miguel ANGEL");
-  // pthread_mutex_init( &semaforo, NULL);
     return 0;
 }
+
+
+
 
 
 void writeLogMessage(char *id, char *msg) {
@@ -142,56 +153,74 @@ void creacionClienteVip(){
 
 void *nuevoCliente(void *arg){
 
+   pthread_mutex_lock(&semaforoCliente);  //cuidado PRECAUCION PELIGROSO ADVERTENCIA MUCHO PELIGROSO ALTA TENSION
+
     if(contadorClientes<20){
 
-        if(*(int *)arg == 1){     //1 = CLIENTE VIP
+        if(*(int *)arg == 0){     //0 = CLIENTE NORMAL
 
           listaClientes[contadorClientes - 1].id = contadorIdClientes;
+
+          printf("ID jaja miguel  %d", contadorIdClientes);
+          printf("\n");
+          
+          ordenEntradaClientes[numeroCola] = contadorIdClientes;
           contadorIdClientes++;
+          numeroCola++;
+          
           
           listaClientes[contadorClientes - 1].atendido = false;
           listaClientes[contadorClientes - 1].esVip= true;       
           listaClientes[contadorClientes - 1].ascensor = false;
           contadorClientes++;
-          writeLogMessage("1", "Cliente vip ha llegado");
+          writeLogMessage("1", "Un cliente NORMAL ha llegado.");
 
-          accionesCliente();
+          accionesCliente(listaClientes[contadorClientes - 1].id);
 
-        }else{                    //0 = CLIENTE NORMAL
+        }else{                    //1 = CLIENTE VIP
 
           listaClientes[contadorClientes - 1].id = contadorIdClientes;
+
+          printf("ID jaja miguel  %d", contadorIdClientes);
+          printf("\n");
+
+          ordenEntradaClientes[numeroCola] = contadorIdClientes;
           contadorIdClientes++;
+          numeroCola++;
             
           listaClientes[contadorClientes - 1].atendido = false;
           listaClientes[contadorClientes - 1].esVip= false;
           listaClientes[contadorClientes - 1].ascensor = false;
           contadorClientes++;
-          writeLogMessage("1", "Cliente normal ha llegado");
+          writeLogMessage("1", "Un cliente VIP ha llegado.");
 
           accionesCliente(listaClientes[contadorClientes - 1].id);
         }
           
     }else{
         //llamada para salir del hilo
-        writeLogMessage("1", "El hotel esta lleno");
+        writeLogMessage("1", "El hotel está lleno.");
     } 
+    pthread_mutex_unlock(&semaforoCliente);
+    pthread_exit(NULL);
 }
 
 void accionesCliente(int identidad) {
   
 
-  if(listaClientes[posicionCliente(identidad)].esVip==false){
-      writeLogMessage("1", "Un nuevo cliente normal ha entradado");
-  }else{
-       writeLogMessage("1", "Un nuevo cliente vip ha entrado");  
-  }
+
+  // if(listaClientes[posicionCliente(identidad)].esVip==false){
+  //     writeLogMessage("1", "Un nuevo cliente normal ha entrado");
+  // }else{
+  //      writeLogMessage("1", "Un nuevo cliente vip ha entrado");  
+  // }
   
   int eleccion = calculaAleatorios(1, 10);
   
 
-  if (eleccion == 1) {      
+  if (eleccion == 1) {                  //Van directamente a maquinas
+ 
     
-    //  Van directamente a maquinas
 
     
   } else {    
@@ -228,7 +257,6 @@ void accionesCliente(int identidad) {
           
         }
     } 
- 
   }
 
 //LLAMADARECEPCIONISTA(ID);
@@ -236,6 +264,16 @@ void accionesCliente(int identidad) {
 
 
 }
+
+// void agregarCola(int identidad) {
+
+//   int i = 0;
+//   while (ordenEntradaClientes[i] != 0) {
+
+//     i++;
+//   }
+//   ordenEntradaClientes[i] = identidad;
+// }
 
 
 int posicionCliente(int identidad) {
@@ -261,7 +299,3 @@ int calculaAleatorios(int min, int max) {
 
 // // // // // // // //   return cadena;
 // // // // // // // // }
-
-
-
- 
