@@ -1,0 +1,54 @@
+void *accionesRecepcionista2(void *arg){
+
+  //escoge sus propio clientes utilizando el mutex para no acceder a la vez al array de clientes
+  bool tenemosCliente;
+  int pos;
+
+  pthread_mutex_lock(&semaforoRecepcionistas);   
+
+  while(true){
+
+    if(numeroCola>0){
+       //decidir que cliente escogemos
+      pos=posicionCliente(ordenRecepcionista[0]);
+      if(!listaClientes[pos].esVip && !recepcionistaVipFuncionando){    //si el siguiente cliente en la cola es VIP tendremos que controlar si el recepcionistaVip est ocupado  
+        
+      
+        ordenRecepcionista[1]=0;
+        quitarVacioCola(1);
+        //IMPORTANTE, HACER METODO PARA MOVER LOS ELEMENTOS DE LA COLA A LA IZQUIERDA Y ELIMINAR EL PRIMERO
+        
+        //Esto va a ir en la función regulaClientes 
+        int aleatorio = calculaAleatorios(1, 10);
+
+        if(aleatorio==1 || aleatorio==2 ){
+
+          aleatorio = calculaAleatorios(1, 10);
+
+          if(aleatorio==1){ //10% mal identificados
+
+           sleep(calculaAleatorios(2, 6));
+            //llamada para saber si va a ascensores o no
+          
+            
+          }else if(aleatorio==2){ //10% sin pasaporte covid avandonan el hotel
+            sleep(calculaAleatorios(6, 10)); 
+            //llamada para saber si va a ascensores o no
+          }   
+        }else{
+          
+          //80% de los clientes: todo en orden 
+          sleep(calculaAleatorios(1, 4));
+          //llamada para saber si va a ascensores o no
+
+        }
+
+      }else{  //caso en el que el vip no puede ser atendido por el recepcionista vip
+
+        pos=posicionCliente(ordenRecepcionista[1]); //Si no podemos coger el primero cogeremos el segundo cliente sea vip o no
+
+
+
+
+
+      }
