@@ -9,6 +9,8 @@
       kill -s SITERM pid   
 */
 
+//    TIPO:    1 NORMAL       2 VIP         3 MAQUINA
+
 //Incluir las librerias
 #include <stdio.h>
 #include <stdlib.h>
@@ -47,10 +49,11 @@ int numeroCola = 0;
 int numeroCheckin = 0;
 int listaAscensor[6] = {0};
 
+//1 NORMAL, 2 VIP, 3 MAQUINAS
 struct Cliente{
   int  id;
   bool atendido; 
-  bool esVip;
+  int tipo;
   bool ascensor;
 } listaClientes[20];
 
@@ -190,7 +193,7 @@ void *nuevoCliente(void *arg){
           contadorIdClientes++;
           
           listaClientes[i].atendido = false;
-          listaClientes[i].esVip= true;       
+          listaClientes[i].tipo= 1;       
           listaClientes[i].ascensor = false;
           contadorClientes++;
           writeLogMessage("1", "Un cliente NORMAL ha llegado.");
@@ -209,7 +212,7 @@ void *nuevoCliente(void *arg){
           contadorIdClientes++;
             
           listaClientes[i].atendido = false;
-          listaClientes[i].esVip= false;
+          listaClientes[i].tipo= 2;
           listaClientes[i].ascensor = false;
           contadorClientes++;
           writeLogMessage("1", "Un cliente VIP ha llegado.");
@@ -362,6 +365,8 @@ void *accionesRecepcionista1(void *arg){      //utilizamos el mutex solamente pa
   
   while(true){
 
+    //1 NORMAL, 2 VIP, 3 MAQUINAS
+    //RECEPCIONISTAS 1 MAQUINAS 2
 
    // pthread_mutex_lock(&semaforoRecepcionistas); 
     writeLogMessage("1", "inicio rece");
@@ -370,12 +375,32 @@ void *accionesRecepcionista1(void *arg){      //utilizamos el mutex solamente pa
       
       writeLogMessage("1", "ENTRA EN IF ");
        //decidir que cliente escogemos
-      pos=posicionCliente(ordenRecepcionista[0]);
+      
 
+      int i;
+      bool encontrado = false;
+      for(i=0; i<20 && !encontrado; i++){
+        pos=posicionCliente(ordenRecepcionista[0]);
+        if(listaClientes[i].tipo==1){
+          encontrado=true;
+        }
+      }
 
-      if(ordenRecepcionista[1]!=0 && listaClientes[posicionCliente(ordenRecepcionista[0])].esVip  && !recepcionistaVipFuncionando){
+      
 
-        if(listaClientes[pos].esVip==true && !recepcionistaVipFuncionando ){    //si el siguiente cliente en la cola es VIP tendremos que controlar si el recepcionistaVip est ocupado  
+      ordenRecepcionista[i]=0;
+      quitarVacioCola(1);
+      //mutex
+      regulacionClientes();
+        
+      }else{
+        sleep(1);
+      }
+      
+      ///////////////////////////////////
+   
+
+        if(listaClientes[pos].tipo==2 && !recepcionistaVipFuncionando ){    //si el siguiente cliente en la cola es VIP tendremos que controlar si el recepcionistaVip est ocupado  
           
           pos=posicionCliente(ordenRecepcionista[1]); //Si no podemos coger el primero cogeremos el segundo cliente sea vip o no
           ordenRecepcionista[1]=0;
@@ -385,12 +410,12 @@ void *accionesRecepcionista1(void *arg){      //utilizamos el mutex solamente pa
           pthread_mutex_unlock(&semaforoRecepcionistas);
           //IMPORTANTE, HACER METODO PARA MOVER LOS ELEMENTOS DE LA COLA A LA IZQUIERDA Y ELIMINAR EL PRIMERO
           
-          regulacionClientes();
+          
         }
 
       }else{    //cliente normal
 
-        if ((!listaClientes[posicionCliente(ordenRecepcionista[0])].esVip) || (ordenRecepcionista[1]!=0 && listaClientes[posicionCliente(ordenRecepcionista[0])].esVip && recepcionistaVipFuncionando)) {
+        if ((!(listaClientes[posicionCliente(ordenRecepcionista[0])].tipo == 2) || (ordenRecepcionista[1]!=0 && listaClientes[posicionCliente(ordenRecepcionista[0])].tipo==2 && recepcionistaVipFuncionando)) {
 
           printf("AQUI ESTAMOS CON EL CLIENTE %d",ordenRecepcionista[0] );
           writeLogMessage("1", "AQUI ESTAMOS CON EL CLIENTE NORMAL");
@@ -459,9 +484,9 @@ void *accionesRecepcionista2(void *arg){
       pos=posicionCliente(ordenRecepcionista[0]);
 
 
-  if(ordenRecepcionista[1]!=0 && listaClientes[posicionCliente(ordenRecepcionista[0])].esVip  && !recepcionistaVipFuncionando){
+  if(ordenRecepcionista[1]!=0 && listaClientes[posicionCliente(ordenRecepcionista[0])].tipo==2  && !recepcionistaVipFuncionando){
 
-        if(listaClientes[pos].esVip==true && !recepcionistaVipFuncionando ){    //si el siguiente cliente en la cola es VIP tendremos que controlar si el recepcionistaVip est ocupado  
+        if(listaClientes[pos].tipo==2 && !recepcionistaVipFuncionando ){    //si el siguiente cliente en la cola es VIP tendremos que controlar si el recepcionistaVip est ocupado  
           
           pos=posicionCliente(ordenRecepcionista[1]); //Si no podemos coger el primero cogeremos el segundo cliente sea vip o no
           ordenRecepcionista[1]=0;
@@ -476,7 +501,7 @@ void *accionesRecepcionista2(void *arg){
 
       }else{    //cliente normal
 
-        if ((!listaClientes[posicionCliente(ordenRecepcionista[0])].esVip) || (ordenRecepcionista[1]!=0 && listaClientes[posicionCliente(ordenRecepcionista[0])].esVip && recepcionistaVipFuncionando)) {
+        if ((!(listaClientes[posicionCliente(ordenRecepcionista[0])].tipo==2) || (ordenRecepcionista[1]!=0 && listaClientes[posicionCliente(ordenRecepcionista[0])].tipo==2 && recepcionistaVipFuncionando)) {
 
           printf("AQUI ESTAMOS CON EL CLIENTE %d",ordenRecepcionista[0] );
           writeLogMessage("1", "AQUI ESTAMOS CON EL CLIENTE");
@@ -540,7 +565,7 @@ void *accionesRecepcionistaVip(void *arg){
       for(i=0; i<numeroCola; i++){
 
         pos=posicionCliente(ordenRecepcionista[i]);
-        if(listaClientes[pos].esVip==true){
+        if(listaClientes[pos].tipo==2){
           encontrado=true;
         }
 
@@ -729,8 +754,7 @@ void eliminarCliente(int identidad){
 
       listaClientes[posicionCliente(identidad)].id=0;
       listaClientes[posicionCliente(identidad)].atendido=false;
-      listaClientes[posicionCliente(identidad)].esVip=false;
+      listaClientes[posicionCliente(identidad)].tipo=0;
       listaClientes[posicionCliente(identidad)].ascensor=false;
       
 }
-
