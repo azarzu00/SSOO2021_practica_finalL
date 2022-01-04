@@ -38,7 +38,7 @@ int descanso2=0;
 
 //semaforos
 pthread_mutex_t semaforoCliente, semaforoFichero, maquinas, semaforoRecepcionistas, semaforoCheckIn;
-pthread_t hiloClientes;
+pthread_t hiloClientes, recepcionista1, recepcionista2, recepcionistaVip;
 
 //Recepcionistas
 int recepcionistas1;
@@ -98,7 +98,6 @@ int main(int argc, char *argv[]){
 
   
   //HILOS
-  pthread_t recepcionista1,recepcionista2,recepcionistaVip;
   pthread_attr_t tattr;
     
   pthread_mutex_init(&semaforoCliente, NULL); 
@@ -129,9 +128,7 @@ int main(int argc, char *argv[]){
 
   //recepcionistas 
     for (int i = 0; i<20; i++) {
-
-      printf("%d", ordenRecepcionista[i]);
-
+ 
     }
 
     return 0;
@@ -212,6 +209,8 @@ void *nuevoCliente(void *arg){
           printf("ESTAMOS EN CREACION DE UN NUEVO CLIENTE NORMAL  %d", contadorIdClientes);
           writeLogMessage("1", "Hola todo bien estoy en creacion del cliente ok");
           printf("\n");
+
+          writeLogMessageConVariable("1", "Un cliente NORMAL ha llegado y se le asigna el ID.( ͡👁️ ͜ʖ ͡👁️)", contadorIdClientes);
           
           contadorIdClientes++;
           
@@ -219,8 +218,6 @@ void *nuevoCliente(void *arg){
           listaClientes[i].tipo= 1;       
           listaClientes[i].ascensor = 0;
           contadorClientes++;
-          writeLogMessage("1", "Un cliente NORMAL ha llegado.( ͡👁️ ͜ʖ ͡👁️)");
-
           pthread_mutex_unlock(&semaforoCliente);
 
           accionesCliente(listaClientes[i].id);
@@ -264,10 +261,12 @@ void accionesCliente(int identidad) {
   if (eleccion == 1) {                  //El cliente va directamente a maquinas de checkin    
                                         //metodo para ir a maquinas de checkin
     writeLogMessage("1", "me voy a chec");                       //Si llegan y no quedan maquinas libres se van a recepcionistas
-                                        //Habria que añadirlo a la cola de clientes (ordenEntradaClientes)
+                                        
+         accionesCheckin(identidad);                                        //Habria que añadirlo a la cola de clientes (ordenEntradaClientes)
   } else {
     
     eleccion = calculaAleatorios(1, 10);
+    writeLogMessageConVariable("1", "ACCIONES CLIENTE numero aleatorio tomado",  eleccion);
     
     if(eleccion==2 || eleccion == 3){   //El cliente se cansan de esperar en cola y se van a maquinas de checkIn
 
@@ -294,13 +293,34 @@ void accionesCliente(int identidad) {
         } else {                        //El cliente se queda definitivamente y va con los recepcionistas
 
           writeLogMessage("1", "EL CLIENTE SE VA A LA COLA A ESPERAR QUE LOS RECEPCIONISTAS LE LLAMEN ( ͡👁️ ͜ʖ ͡👁️)");       
-         ordenRecepcionista[numeroCola] = identidad;
+          ordenRecepcionista[numeroCola] = identidad;
           numeroCola++;
-         
+          //wtfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
            writeLogMessage("1", "NUMEROCOLA SE HA AUMENTADO");
+           //cerramos?
         }
     } 
   }
+
+  while (listaClientes[posicionCliente(identidad)].atendido == 0) {
+    //jiji
+  }
+
+  if (listaClientes[posicionCliente(identidad)].tipo == 1 || listaClientes[posicionCliente(identidad)].tipo == 2) {
+    writeLogMessageConVariable("1", "HEMOS LLEGADO A REGULACION CLINTES", 1);
+    regulacionClientes(identidad);
+  }
+  
+  while (listaClientes[posicionCliente(identidad)].ascensor == 0) {
+    //jiji
+  }
+
+  writeLogMessageConVariable("1", "HEMOS LLEGADO A ASCENSORES VAMOSOOOOOOOOOOOOOSSS", 1);
+
+
+
+  //llamada a metodo ascensores escaleras
+  
 }
 
 
@@ -309,6 +329,14 @@ void accionesCheckin(int identidad) {
     int parar = 0;
     int irse = 0;
     int aleatorio;
+
+    if (listaClientes[posicionCliente(identidad)].tipo == 1) {
+
+        listaClientes[posicionCliente(identidad)].tipo = 3;  
+    } else if (listaClientes[posicionCliente(identidad)].tipo == 2) {
+
+        listaClientes[posicionCliente(identidad)].tipo = 4;  
+    }
        
      while (parar == 0) {
 
@@ -325,29 +353,42 @@ void accionesCheckin(int identidad) {
 
               pthread_mutex_unlock(&semaforoCheckIn);
               
+              writeLogMessage("1", "EL CLIENTE ESTA USANDO UNA MAKINA");
+
               sleep(6);                             //Espera 6 segundos al ocupar la maquina de checkin
 
               pthread_mutex_lock(&semaforoCheckIn);
               
               maquinasOcupadas[i] = false;          //Termina de usar la máquina y debería irse al ascensor
               pthread_mutex_unlock(&semaforoCheckIn);
-                                                    //TO DO ascensor o escalera
+                                                    
+              listaClientes[posicionCliente(identidad)].atendido = 1;
+                                                  
+
+              writeLogMessage("1", "EL CLIENTE HA TERMINADO DE USAR LA MAKINA");
            }
          }
-
-        
-
+       
        } else {             //Si no hay huecos hay un 50% de que decida irse a recepcionistas
 
         aleatorio = calculaAleatorios(1, 10);
+              writeLogMessage("1", "NO HAY HU");
 
         if (aleatorio < 6) {
 
           irse = 1;
           parar = 1;
 
+          if (listaClientes[posicionCliente(identidad)].tipo == 3) {
+
+            listaClientes[posicionCliente(identidad)].tipo = 1;  
+          } else if (listaClientes[posicionCliente(identidad)].tipo == 4) {         //tipo = 3 fue a cheeckin y era normal, tipo = 4 fue a checkin y era vip
+
+            listaClientes[posicionCliente(identidad)].tipo = 2;
+          }
+
           ordenRecepcionista[numeroCola] = identidad;
-          numeroCola++; 
+          numeroCola++;
           
         } else {    //vuelve a intentar acceder a maquinas
 
@@ -396,14 +437,13 @@ void *accionesRecepcionista1(void *arg){
 
     if(numeroCola>0){
       if(descanso1==5){
+         writeLogMessage("1", "Recepcionista 1 descansando");
+
           sleep(5);
           descanso1=0;
       }
       
-     
        //decidir que cliente escogemos
-      
-
         int i;
         bool encontrado = false;
         
@@ -413,6 +453,8 @@ void *accionesRecepcionista1(void *arg){
           pos=posicionCliente(ordenRecepcionista[0]);
           if(listaClientes[i].tipo==1){
             encontrado=true;
+            writeLogMessage("1", "Entra recepcionista 1 ");
+
           }
         }
 
@@ -420,14 +462,25 @@ void *accionesRecepcionista1(void *arg){
           
           writeLogMessageConVariable("1","HA ENTRADO EN EL RECEPCIONISTA NORMAL, SU ID ES: ", ordenRecepcionista[i]);
           
+          // regulacionClientes(ordenRecepcionista[i]);
+
+          int copiaID = ordenRecepcionista[i];
+
           ordenRecepcionista[i]=0;
           quitarVacioCola(1);
+          
+          listaClientes[posicionCliente(copiaID)].atendido = 1;
+
+          while(listaClientes[posicionCliente(copiaID)].atendido != 2) {
+            //jiji
+          }
+
           
           descanso1++;
 
           pthread_mutex_unlock(&semaforoRecepcionistas); 
           //finalMutex
-          regulacionClientes();  //<----pthread_exit(NULL) 
+     
            
         }else{
           sleep(1);
@@ -452,13 +505,12 @@ void *accionesRecepcionista2(void *arg){
 
     if(numeroCola>0){
       if(descanso1==5){
+          writeLogMessage("1", "Recepcionista 2 descansando");
           sleep(5);
           descanso1=0;
       }
-      writeLogMessage("1", "Entra recepcionista 2 ");
-       //decidir que cliente escogemos
       
-
+       //decidir que cliente escogemos
         int i;
         bool encontrado = false;
         pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
@@ -466,6 +518,8 @@ void *accionesRecepcionista2(void *arg){
           pos=posicionCliente(ordenRecepcionista[0]);
           if(listaClientes[i].tipo==1){
             encontrado=true;
+            writeLogMessage("1", "Entra recepcionista 2 ");
+
           }
         }
 
@@ -495,6 +549,8 @@ void *accionesRecepcionistaVip(void *arg){
 //  writeLogMessage("1", "inicio recepcionista VIP ");
   
   while(true){ 
+    
+    writeLogMessageConVariable("1", "contadorIdClientes: ", contadorIdClientes);
 
 //  writeLogMessage("1", "REPITE recepcionista VIP");
 
@@ -631,9 +687,6 @@ void quitarVacioCola(int cola) {
 }
 
 
-
-
-
 void regulacionClientes(int identidad) {   //decidimos lo que pasa a los clientes antes de irse
   
   srand(getpid());
@@ -648,28 +701,32 @@ void regulacionClientes(int identidad) {   //decidimos lo que pasa a los cliente
 
     if(aleatorio==1){ //10% mal identificados
 
-      writeLogMessage("1", "El cliente está mal identificado, se va a escaleras o ascensor");
+      writeLogMessage("1", "REGULACIONES El cliente está mal identificado, se va a escaleras o ascensor");
       sleep(calculaAleatorios(2, 6));
-      ascensorEscalera(identidad);
+      writeLogMessageConVariable("1", "REGULACON CLIENTES numero aleatorio obtenido para el sleep de que se va a ESCALERAS O ASCENSOR", calculaAleatorios(2, 6));
+      listaClientes[posicionCliente(identidad)].atendido = 2;
+      listaClientes[posicionCliente(identidad)].ascensor = 1;
       //llamada para saber si va a ascensores o no
                   
     }else if(aleatorio==2){ //10% sin pasaporte covid abandonan el hotel  
-      writeLogMessage("1", "El cliente no tiene pasaporte covid, se marcha del hotel");
+      writeLogMessage("1", "REGULACIONES El cliente no tiene pasaporte covid, se marcha del hotel");
       
       sleep(calculaAleatorios(6, 10)); 
+      writeLogMessageConVariable("1", "REGULACON CLIENTES numero aleatorio obtenido para el sleep DE QUE SE MARCHA DEL HOTEL", calculaAleatorios(2, 6));
       //SE VAN DEL HOTEL, PODRIAMOS DEJAR ESTO TAL CUAL
       //COGER EL ID DEL CLIENTE Y CAMBIAR A 0 TODOS SUS PARAMETROS
 
+      writeLogMessage("1", "REGULACIONES cliente eliminado");
       eliminarCliente(identidad);
-
-      writeLogMessage("1", "cliente eliminado");
+      //ELIMINAR DE LA COLA DE RECEPCIONISTAS
 
     }   
   }else{              //80% de los clientes: todo en orden
           
-      writeLogMessage("1", "El cliente lo tiene todo en orden, se va a escaleras o ascensor");
+      writeLogMessage("1", "REGULACIONES El cliente lo tiene todo en orden, se va a escaleras o ascensor");
       sleep(calculaAleatorios(1, 4));
-      ascensorEscalera(identidad);
+      listaClientes[posicionCliente(identidad)].atendido = 2;
+      listaClientes[posicionCliente(identidad)].ascensor = 1;
       //llamada para saber si va a ascensores o no
 
     }
@@ -683,5 +740,7 @@ void eliminarCliente(int identidad){
       listaClientes[posicionCliente(identidad)].tipo=0;
       listaClientes[posicionCliente(identidad)].ascensor=0;
 
+      contadorClientes--;
 
+      pthread_exit(&nuevoCliente);
 }

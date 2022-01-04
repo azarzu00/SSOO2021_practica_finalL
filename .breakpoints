@@ -1,23 +1,31 @@
 {
   "files": {
+    "logsPractica": [
+      {
+        "id": "2dea4bd1-a7c4-4029-9e32-5138d9c93150",
+        "line": 1,
+        "version": 1032,
+        "index": 0
+      }
+    ],
     "main.c": [
       {
         "id": "109825ee-4d28-4dfe-bb4c-dc3f9a28466b",
         "line": 12,
-        "version": 20580,
+        "version": 22387,
         "index": 169
       },
       {
         "id": "97835f26-6c7d-4afe-b585-6d619bb2f23f",
         "line": 12,
-        "version": 20580,
+        "version": 22387,
         "index": 169
       },
       {
-        "id": "b0046b31-52e3-4dd0-8e1b-1fd2d7fa9a0e",
-        "line": 667,
-        "version": 20827,
-        "index": 15252
+        "id": "a399b340-b3ac-40ff-8bef-5a36268bfcec",
+        "line": 734,
+        "version": 22387,
+        "index": 18258
       }
     ]
   }
