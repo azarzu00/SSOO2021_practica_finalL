@@ -1,4 +1,4 @@
-/*   COMANDOS PARA MANDAR LAS SEÑALES AL PROGRAMA CUANDO
+ /*   COMANDOS PARA MANDAR LAS SEÑALES AL PROGRAMA CUANDO
 
       a.out
 
@@ -48,7 +48,7 @@ int descanso1=0;
 int descanso2=0;
 
 //semaforos
-pthread_mutex_t semaforoCliente, semaforoFichero, maquinas, semaforoRecepcionistas, semaforoCheckIn;
+pthread_mutex_t semaforoCliente, semaforoFichero, maquinas, semaforoRecepcionistas, semaforoCheckIn, semaforoLogs;
 pthread_t hiloClientes, recepcionista1, recepcionista2, recepcionistaVip;
 
 //Recepcionistas
@@ -67,7 +67,7 @@ int listaAscensor[6] = {0};
 //1 NORMAL, 2 VIP, 3 MAQUINAS
 struct Cliente{
   int  id;
-  int atendido; //0 false 1 true
+  int atendido; //0 NO ATENDIDO 1 ATENDIENDO 2 ATENDIDO
   int tipo;
   int ascensor; //0 false 1 true
 } listaClientes[20];
@@ -114,6 +114,7 @@ int main(int argc, char *argv[]){
   pthread_mutex_init(&semaforoCliente, NULL); 
   pthread_mutex_init(&semaforoCheckIn, NULL);
   pthread_mutex_init(&semaforoRecepcionistas, NULL);
+  pthread_mutex_init(&semaforoLogs, NULL);
 
   pthread_create(&recepcionista1, NULL, accionesRecepcionista1, "Ejecuta recepcionista1");
   pthread_create(&recepcionista2, NULL, accionesRecepcionista2, "Ejecuta recepcionista2");
@@ -147,6 +148,7 @@ int main(int argc, char *argv[]){
 
 
 void writeLogMessage(char *id, char *msg) {
+  pthread_mutex_lock(&semaforoCliente);
   // Calculamos la hora actual
   time_t now = time(0);
   struct tm *tlocal = localtime(&now);
@@ -156,9 +158,11 @@ void writeLogMessage(char *id, char *msg) {
   logFile = fopen("logsPractica", "a");
   fprintf(logFile, "[%s] %s: %s \n", stnow, id, msg);
   fclose(logFile);
+  pthread_mutex_unlock(&semaforoCliente);
 }
 
 void writeLogMessageConVariable(char *id, char *msg, int i) {
+  pthread_mutex_lock(&semaforoCliente);
   // Calculamos la hora actual
   time_t now = time(0);
   struct tm *tlocal = localtime(&now);
@@ -168,6 +172,7 @@ void writeLogMessageConVariable(char *id, char *msg, int i) {
   logFile = fopen("logsPractica", "a");
   fprintf(logFile, "[%s] %s: %s %d \n", stnow, id, msg, i);
   fclose(logFile);
+  pthread_mutex_unlock(&semaforoCliente);
 }
 
 
@@ -196,13 +201,13 @@ void creacionClienteVip(){
 void *nuevoCliente(void *arg){
 
   //pthread_mutex_lock(&semaforoCliente); 
-  bool encontrado = false;
+  int encontrado = 0;
   int i = 0;
 
-  for (i = 0; i < 20 && !encontrado; i++) {
+  for (i = 0; i < 20 && encontrado==0; i++) {
 
     if (listaClientes[i].id == 0) {
-    encontrado = true;
+    encontrado = 1;
 
     }
 
@@ -303,7 +308,7 @@ void accionesCliente(int identidad) {
     } else {    
 
         eleccion = calculaAleatorios( 1, 20);
-
+        writeLogMessageConVariable("1", " Cliente puede /cansarse de la cola / quedarse e irse con recepcionistas/ ", eleccion);       
         if(eleccion == 1) {             //El cliente se cansa de la cola, van al baño y se marcha del hotel
 
           writeLogMessage("1", "CLIENTE ELIMINADO PORQUE SE VA A LAVARSE LAS MANOS Y PIERDE SU TURNO( ͡👁️ ͜ʖ ͡👁️)");
@@ -314,23 +319,22 @@ void accionesCliente(int identidad) {
           writeLogMessage("1", "EL CLIENTE SE VA A LA COLA A ESPERAR QUE LOS RECEPCIONISTAS LE LLAMEN ( ͡👁️ ͜ʖ ͡👁️)");       
           ordenRecepcionista[numeroCola] = identidad;
           numeroCola++;
-          //wtfffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff
+          //wtffffffffffffffffffffff
            writeLogMessage("1", "NUMEROCOLA SE HA AUMENTADO");
            //cerramos?
 
-           for (int i = 0; i<20; i++) {
-
-             writeLogMessageConVariable("1", "orden de recepcionistas: ", ordenRecepcionista[i]);
-           }
+           
         }
     } 
   }
 
-
+  writeLogMessage("1", "NOS METEMOS EN EL PRIMER WHILE");
 
   while (listaClientes[posicionCliente(identidad)].atendido == 0) {
     //jiji
   }
+
+  writeLogMessage("1", "SALIMOS DEL PRIMER WHILE");
 
   if (listaClientes[posicionCliente(identidad)].tipo == 3 || listaClientes[posicionCliente(identidad)].tipo == 4) {
     writeLogMessage("1", "HEMOSSSSSSS SALIDOOOOOOO DE MAKINAASASSSASASASASAASS");
@@ -343,10 +347,8 @@ void accionesCliente(int identidad) {
 
   writeLogMessageConVariable("1", "HEMOS LLEGADO A ASCENSORES VAMOSOOOOOOOOOOOOOSSS", 1);
   
-  while (listaClientes[posicionCliente(identidad)].ascensor == 0) {
-    //jiji
-  }
 
+  ascensorEscalera(identidad);
  
 
 
@@ -464,7 +466,7 @@ void *accionesRecepcionista1(void *arg){
   
   while(true){
 
-   //pthread_mutex_lock(&semaforoRecepcionistas);
+   
    
 
     if(numeroCola>0){
@@ -477,15 +479,16 @@ void *accionesRecepcionista1(void *arg){
       
        //decidir que cliente escogemos
         int i = 0;
-        bool encontrado = false;
+        int encontrado = 0;
         
-       // pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
         
-        while(i<20 && !encontrado){
+        while(i<20 && encontrado==0){
+
+          //pthread_mutex_lock(&semaforoRecepcionistas);
           
           if (ordenRecepcionista[i] != 0) {
 
-            encontrado = true;
+            encontrado = 1;
             
           }
 
@@ -496,10 +499,10 @@ void *accionesRecepcionista1(void *arg){
 
          writeLogMessageConVariable("1","LA I DEL RECEPCIONISTA 1 ES: ", i);
 
-        if(encontrado==true ){
+        if(encontrado==1 ){
 
 
-           writeLogMessage("1", "REPITE recepcionista 1");
+          writeLogMessage("1", "entramos en recepcionista 1");
           // regulacionClientes(ordenRecepcionista[i]);
 
           int copiaID = ordenRecepcionista[i];
@@ -509,17 +512,23 @@ void *accionesRecepcionista1(void *arg){
           
           listaClientes[posicionCliente(copiaID)].atendido = 1;
 
+          pthread_mutex_unlock(&semaforoRecepcionistas);
+
+          for (int i = 0; i<20; i++) {
+
+             writeLogMessageConVariable("1", "orden de recepcionistas: ", ordenRecepcionista[i]);
+           }
+
           while(listaClientes[posicionCliente(copiaID)].atendido != 2) {
             //jiji
            
           }
 
-          
+          writeLogMessageConVariable("1", "ha llegao PRIMO", ordenRecepcionista[i]);
+
           descanso1++;
 
-          pthread_mutex_unlock(&semaforoRecepcionistas); 
-          //finalMutex
-     
+    
            
         }else{
           sleep(1);
@@ -534,6 +543,8 @@ void *accionesRecepcionista2(void *arg){
 
 
   int pos;
+  int i;
+  int encontrado;
    
 
   writeLogMessage("1", "inicio recepcionista 2");
@@ -544,7 +555,7 @@ void *accionesRecepcionista2(void *arg){
    
 
     if(numeroCola>0){
-      if(descanso1==5){
+      if(descanso2==5){
          writeLogMessage("1", "Recepcionista 2 descansando");
 
           sleep(5);
@@ -552,16 +563,16 @@ void *accionesRecepcionista2(void *arg){
       }
       
        //decidir que cliente escogemos
-        int i=0;
-        bool encontrado = false;
+        i=0;
+        encontrado = 0;
         
-       // pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
+
         
-        while(i<20 && !encontrado){
+        while(i<20 && encontrado==0){
           
           if (ordenRecepcionista[i] != 0) {
 
-            encontrado = true;
+            encontrado = 1;
             
           }
           i++;
@@ -571,10 +582,10 @@ void *accionesRecepcionista2(void *arg){
 
         writeLogMessageConVariable("1","LA I DEL RECEPCIONISTA 2 ES: ", i);
 
-        if(encontrado==true ){
+        if(encontrado==1 ){
           
-          writeLogMessageConVariable("1","HA ENTRADO EN EL RECEPCIONISTA NORMAL, SU ID ES: ", ordenRecepcionista[i]);
-           writeLogMessage("1", "REPITE recepcionista 2");
+          writeLogMessageConVariable("1","entramos en recepcionista 2, el id es: ", ordenRecepcionista[i]);
+         
           // regulacionClientes(ordenRecepcionista[i]);
 
           int copiaID = ordenRecepcionista[i];
@@ -584,15 +595,16 @@ void *accionesRecepcionista2(void *arg){
           
           listaClientes[posicionCliente(copiaID)].atendido = 1;
 
+          pthread_mutex_unlock(&semaforoRecepcionistas); 
+
           while(listaClientes[posicionCliente(copiaID)].atendido != 2) {
             //jiji
 
           }
-
           
           descanso2++;
 
-          pthread_mutex_unlock(&semaforoRecepcionistas); 
+
           //finalMutex
      
            
@@ -610,6 +622,9 @@ void *accionesRecepcionista2(void *arg){
 void *accionesRecepcionistaVip(void *arg){
 
   int pos;
+  int encontrado;
+  int i;
+  int copiaID;
   
 //  writeLogMessage("1", "inicio recepcionista VIP ");
   
@@ -621,13 +636,11 @@ void *accionesRecepcionistaVip(void *arg){
 
     if(numeroCola>0){
       
-     
        //decidir que cliente escogemos
 
-      bool encontrado=false;
+      encontrado=0;
 
-      int i;
-      //pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
+     // pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
       for(i=0; i<numeroCola; i++){
 
         pos=posicionCliente(ordenRecepcionista[i]);
@@ -635,30 +648,36 @@ void *accionesRecepcionistaVip(void *arg){
 
         writeLogMessage("1", "Entra en recepcionista vip??? ");
         
-          encontrado=true;
+          encontrado=1;
         }
 
       }
-      if(encontrado ){ 
+      if(encontrado == 1){ 
 
-        int copiaID = ordenRecepcionista[i];
+        copiaID = ordenRecepcionista[i];
 
         ordenRecepcionista[i]=0;
         quitarVacioCola(1);
 
         listaClientes[posicionCliente(copiaID)].atendido = 1;
 
+
+
+
+          
+        pthread_mutex_unlock(&semaforoRecepcionistas);
+
         while(listaClientes[posicionCliente(copiaID)].atendido != 2) {
           //jiji
         }
 
-        pthread_mutex_unlock(&semaforoRecepcionistas);
+
        
         
 
       } else {
         
-        //pthread_mutex_unlock(&semaforoRecepcionistas);
+        pthread_mutex_unlock(&semaforoRecepcionistas);
         sleep(1);
       }
     }else{
@@ -678,7 +697,7 @@ writeLogMessage("1", "ASCENSOR ESKALERA");
 
 
   int aleatorio;
-  bool encontrado = false;
+  int encontrado = 0;
 
   aleatorio = calculaAleatorios(1, 10);
 
@@ -688,13 +707,13 @@ writeLogMessage("1", "ASCENSOR ESKALERA");
 
   } else {
     
-    while (!encontrado) {
+    while (encontrado == 0) {
 
-      for (int i = 0; i < 6 && !encontrado; i++) {
+      for (int i = 0; i < 6 && encontrado == 0; i++) {
 
         if (listaAscensor[i] == 0) {
           listaAscensor[i] = identidad;
-          encontrado = true;
+          encontrado = 1;
           
         }   //TERMINAR
      }
@@ -774,8 +793,11 @@ void regulacionClientes(int identidad) {   //decidimos lo que pasa a los cliente
       writeLogMessage("1", "REGULACIONES El cliente está mal identificado, se va a escaleras o ascensor");
       sleep(calculaAleatorios(2, 6));
       writeLogMessageConVariable("1", "REGULACON CLIENTES numero aleatorio obtenido para el sleep de que se va a ESCALERAS O ASCENSOR", calculaAleatorios(2, 6));
+
+      pthread_mutex_lock(&semaforoRecepcionistas);
       listaClientes[posicionCliente(identidad)].atendido = 2;
       listaClientes[posicionCliente(identidad)].ascensor = 1;
+      pthread_mutex_unlock(&semaforoRecepcionistas);
       //llamada para saber si va a ascensores o no
                   
     }else if(aleatorio==2){ //10% sin pasaporte covid abandonan el hotel  
@@ -785,10 +807,11 @@ void regulacionClientes(int identidad) {   //decidimos lo que pasa a los cliente
       writeLogMessageConVariable("1", "REGULACON CLIENTES numero aleatorio obtenido para el sleep DE QUE SE MARCHA DEL HOTEL", espera);
       espera = sleep(calculaAleatorios(6, 10));
 
-
+      pthread_mutex_lock(&semaforoRecepcionistas);
       listaClientes[posicionCliente(identidad)].atendido = 2;
       listaClientes[posicionCliente(identidad)].ascensor = 1;
-      
+      pthread_mutex_unlock(&semaforoRecepcionistas);
+
       //SE VAN DEL HOTEL, PODRIAMOS DEJAR ESTO TAL CUAL
       //COGER EL ID DEL CLIENTE Y CAMBIAR A 0 TODOS SUS PARAMETROS
 
@@ -801,8 +824,11 @@ void regulacionClientes(int identidad) {   //decidimos lo que pasa a los cliente
           
       writeLogMessage("1", "REGULACIONES El cliente lo tiene todo en orden, se va a escaleras o ascensor");
       sleep(calculaAleatorios(1, 4));
+
+      pthread_mutex_lock(&semaforoRecepcionistas);
       listaClientes[posicionCliente(identidad)].atendido = 2;
       listaClientes[posicionCliente(identidad)].ascensor = 1;
+      pthread_mutex_unlock(&semaforoRecepcionistas);
       //llamada para saber si va a ascensores o no
 
     }
@@ -811,12 +837,14 @@ void regulacionClientes(int identidad) {   //decidimos lo que pasa a los cliente
 
 void eliminarCliente(int identidad){
 
+      pthread_mutex_lock(&semaforoRecepcionistas);
       listaClientes[posicionCliente(identidad)].id=0;
       listaClientes[posicionCliente(identidad)].atendido=0;
       listaClientes[posicionCliente(identidad)].tipo=0;
       listaClientes[posicionCliente(identidad)].ascensor=0;
 
       contadorClientes--;
-
+      
+      pthread_mutex_unlock(&semaforoRecepcionistas);
       pthread_exit(&hiloClientes);
 }
