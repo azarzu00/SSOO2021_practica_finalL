@@ -195,7 +195,7 @@ void creacionClienteVip(){
 
 void *nuevoCliente(void *arg){
 
-  pthread_mutex_lock(&semaforoCliente); 
+  //pthread_mutex_lock(&semaforoCliente); 
   bool encontrado = false;
   int i = 0;
 
@@ -374,7 +374,7 @@ void accionesCheckin(int identidad) {
 
        if (hayHueco()) {
 
-         pthread_mutex_lock(&semaforoCheckIn);
+         //pthread_mutex_lock(&semaforoCheckIn);
          
          for (int i = 0; i < 5 && parar == 0; i++) {
 
@@ -389,7 +389,7 @@ void accionesCheckin(int identidad) {
 
               sleep(6);                             //Espera 6 segundos al ocupar la maquina de checkin
 
-              pthread_mutex_lock(&semaforoCheckIn);
+             // pthread_mutex_lock(&semaforoCheckIn);
               
               maquinasOcupadas[i] = false;          //Termina de usar la máquina y debería irse al ascensor
               pthread_mutex_unlock(&semaforoCheckIn);
@@ -479,15 +479,17 @@ void *accionesRecepcionista1(void *arg){
         int i = 0;
         bool encontrado = false;
         
-        pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
+       // pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
         
-        for(i=0; i<20 && !encontrado; i++){
+        while(i<20 && !encontrado){
           
           if (ordenRecepcionista[i] != 0) {
 
             encontrado = true;
             
           }
+
+          i++;
         }        
 
         i--;
@@ -550,18 +552,19 @@ void *accionesRecepcionista2(void *arg){
       }
       
        //decidir que cliente escogemos
-        int i;
+        int i=0;
         bool encontrado = false;
         
-        pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
+       // pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
         
-        for(i=0; i<20 && !encontrado; i++){
+        while(i<20 && !encontrado){
           
-          if (ordenRecepcionista[i] == 0) {
+          if (ordenRecepcionista[i] != 0) {
 
             encontrado = true;
             
           }
+          i++;
         }
 
         i--;
@@ -624,7 +627,7 @@ void *accionesRecepcionistaVip(void *arg){
       bool encontrado=false;
 
       int i;
-      pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
+      //pthread_mutex_lock(&semaforoRecepcionistas);  //inicioMtux
       for(i=0; i<numeroCola; i++){
 
         pos=posicionCliente(ordenRecepcionista[i]);
