@@ -1,63 +1,148 @@
-[04/01/22 23:16:35] 1: contadorIdClientes:  1 
-[04/01/22 23:16:36] 1: contadorIdClientes:  1 
-[04/01/22 23:16:37] 1: contadorIdClientes:  1 
-[04/01/22 23:16:38] 1: contadorIdClientes:  1 
-[04/01/22 23:16:39] 1: contadorIdClientes:  1 
-[04/01/22 23:16:40] 1: contadorIdClientes:  1 
-[04/01/22 23:16:41] 1: contadorIdClientes:  1 
-[04/01/22 23:16:42] 1: contadorIdClientes:  1 
-[04/01/22 23:16:43] 1: contadorIdClientes:  1 
-[04/01/22 23:16:44] 1: contadorIdClientes:  1 
-[04/01/22 23:16:45] 1: contadorIdClientes:  1 
-[04/01/22 23:16:46] 1: contadorIdClientes:  1 
-[04/01/22 23:16:47] 1: contadorIdClientes:  1 
-[04/01/22 23:16:48] 1: contadorIdClientes:  1 
-[04/01/22 23:16:49] 1: contadorIdClientes:  1 
-[04/01/22 23:16:50] 1: contadorIdClientes:  1 
-[04/01/22 23:16:51] 1: contadorIdClientes:  1 
-[04/01/22 23:16:52] 1: contadorIdClientes:  1 
-[04/01/22 23:16:53] 1: contadorIdClientes:  1 
-[04/01/22 23:16:54] 1: contadorIdClientes:  1 
-[04/01/22 23:16:55] 1: contadorIdClientes:  1 
-[04/01/22 23:16:56] 1: contadorIdClientes:  1 
-[04/01/22 23:16:57] 1: contadorIdClientes:  1 
-[04/01/22 23:16:58] 1: contadorIdClientes:  1 
-[04/01/22 23:16:59] 1: contadorIdClientes:  1 
-[04/01/22 23:17:00] 1: contadorIdClientes:  1 
-[04/01/22 23:17:01] 1: contadorIdClientes:  1 
-[04/01/22 23:17:02] 1: contadorIdClientes:  1 
-[04/01/22 23:17:03] 1: contadorIdClientes:  1 
-[04/01/22 23:17:03] 1: Hola todo bien estoy en creacion del cliente ok 
-[04/01/22 23:17:03] 1: Un cliente NORMAL ha llegado y se le asigna el ID.( ͡👁️ ͜ʖ ͡👁️) 1 
-[04/01/22 23:17:03] 1: ACCIONES CLIENTE numero aleatorio tomado 10 
-[04/01/22 23:17:03] 1: EL CLIENTE SE VA A LA COLA A ESPERAR QUE LOS RECEPCIONISTAS LE LLAMEN ( ͡👁️ ͜ʖ ͡👁️) 
-[04/01/22 23:17:03] 1: NUMEROCOLA SE HA AUMENTADO 
-[04/01/22 23:17:04] 1: Entra recepcionista 1  
-[04/01/22 23:17:04] 1: HA ENTRADO EN EL RECEPCIONISTA NORMAL, SU ID ES:  0 
-[04/01/22 23:17:04] 1: contadorIdClientes:  2 
-[04/01/22 23:17:05] 1: contadorIdClientes:  2 
-[04/01/22 23:17:06] 1: contadorIdClientes:  2 
-[04/01/22 23:17:07] 1: contadorIdClientes:  2 
-[04/01/22 23:17:08] 1: contadorIdClientes:  2 
-[04/01/22 23:17:09] 1: contadorIdClientes:  2 
-[04/01/22 23:17:10] 1: contadorIdClientes:  2 
-[04/01/22 23:17:11] 1: contadorIdClientes:  2 
-[04/01/22 23:17:12] 1: contadorIdClientes:  2 
-[04/01/22 23:17:13] 1: contadorIdClientes:  2 
-[04/01/22 23:17:14] 1: contadorIdClientes:  2 
-[04/01/22 23:17:15] 1: contadorIdClientes:  2 
-[04/01/22 23:17:16] 1: contadorIdClientes:  2 
-[04/01/22 23:17:17] 1: contadorIdClientes:  2 
-[04/01/22 23:17:18] 1: contadorIdClientes:  2 
-[04/01/22 23:17:19] 1: contadorIdClientes:  2 
-[04/01/22 23:17:20] 1: contadorIdClientes:  2 
-[04/01/22 23:17:21] 1: contadorIdClientes:  2 
-[04/01/22 23:17:22] 1: contadorIdClientes:  2 
-[04/01/22 23:17:23] 1: contadorIdClientes:  2 
-[04/01/22 23:17:24] 1: contadorIdClientes:  2 
-[04/01/22 23:17:24] 1: Hola todo bien estoy en creacion del cliente ok 
-[04/01/22 23:17:24] 1: Un cliente NORMAL ha llegado y se le asigna el ID.( ͡👁️ ͜ʖ ͡👁️) 2 
-[04/01/22 23:17:24] 1: ACCIONES CLIENTE numero aleatorio tomado 6 
-[04/01/22 23:17:24] 1: EL CLIENTE SE VA A LA COLA A ESPERAR QUE LOS RECEPCIONISTAS LE LLAMEN ( ͡👁️ ͜ʖ ͡👁️) 
-[04/01/22 23:17:24] 1: NUMEROCOLA SE HA AUMENTADO 
-[04/01/22 23:17:25] 1: contadorIdClientes:  3 
+[07/01/22 00:25:39] 1: inicio recepcionista 2 
+[07/01/22 00:25:39] 1: contadorIdClientes:  1 
+[07/01/22 00:25:40] 1: contadorIdClientes:  1 
+[07/01/22 00:25:41] 1: contadorIdClientes:  1 
+[07/01/22 00:25:42] 1: contadorIdClientes:  1 
+[07/01/22 00:25:43] 1: contadorIdClientes:  1 
+[07/01/22 00:25:44] 1: contadorIdClientes:  1 
+[07/01/22 00:25:45] 1: contadorIdClientes:  1 
+[07/01/22 00:25:46] 1: contadorIdClientes:  1 
+[07/01/22 00:25:47] 1: contadorIdClientes:  1 
+[07/01/22 00:25:48] 1: contadorIdClientes:  1 
+[07/01/22 00:25:49] 1: contadorIdClientes:  1 
+[07/01/22 00:25:50] 1: contadorIdClientes:  1 
+[07/01/22 00:25:51] 1: contadorIdClientes:  1 
+[07/01/22 00:25:52] 1: contadorIdClientes:  1 
+[07/01/22 00:25:53] 1: contadorIdClientes:  1 
+[07/01/22 00:25:54] 1: contadorIdClientes:  1 
+[07/01/22 00:25:55] 1: contadorIdClientes:  1 
+[07/01/22 00:25:56] 1: contadorIdClientes:  1 
+[07/01/22 00:25:57] 1: contadorIdClientes:  1 
+[07/01/22 00:25:58] 1: contadorIdClientes:  1 
+[07/01/22 00:25:59] 1: contadorIdClientes:  1 
+[07/01/22 00:26:00] 1: contadorIdClientes:  1 
+[07/01/22 00:26:01] 1: contadorIdClientes:  1 
+[07/01/22 00:26:02] 1: contadorIdClientes:  1 
+[07/01/22 00:26:03] 1:  ESTAMOS EN NUEVOCLIENTE ----SE LE HA PUESTO EL ID  1 
+[07/01/22 00:26:03] 1: Un cliente NORMAL ha llegado y se le asigna el ID.( ͡👁️ ͜ʖ ͡👁️) 1 
+[07/01/22 00:26:03] 1: ACCIONES CLIENTE numero aleatorio tomado 10 
+[07/01/22 00:26:03] 1: EL CLIENTE SE VA A LA COLA A ESPERAR QUE LOS RECEPCIONISTAS LE LLAMEN ( ͡👁️ ͜ʖ ͡👁️) 
+[07/01/22 00:26:03] 1: NUMEROCOLA SE HA AUMENTADO 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  1 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: orden de recepcionistas:  0 
+[07/01/22 00:26:03] 1: HA ENTRADO EN EL RECEPCIONISTA NORMAL, SU ID ES:  0 
+[07/01/22 00:26:03] 1: REPITE recepcionista 2 
+[07/01/22 00:26:03] 1: contadorIdClientes:  2 
+[07/01/22 00:26:04] 1: contadorIdClientes:  2 
+[07/01/22 00:26:05] 1: contadorIdClientes:  2 
+[07/01/22 00:26:06] 1: contadorIdClientes:  2 
+[07/01/22 00:26:07] 1: contadorIdClientes:  2 
+[07/01/22 00:26:08] 1: contadorIdClientes:  2 
+[07/01/22 00:26:09] 1: contadorIdClientes:  2 
+[07/01/22 00:26:11] 1: contadorIdClientes:  2 
+[07/01/22 00:26:12] 1: contadorIdClientes:  2 
+[07/01/22 00:26:13] 1: contadorIdClientes:  2 
+[07/01/22 00:26:14] 1: contadorIdClientes:  2 
+[07/01/22 00:26:15] 1: contadorIdClientes:  2 
+[07/01/22 00:26:16] 1: contadorIdClientes:  2 
+[07/01/22 00:26:17] 1: contadorIdClientes:  2 
+[07/01/22 00:26:18] 1: contadorIdClientes:  2 
+[07/01/22 00:26:19] 1: contadorIdClientes:  2 
+[07/01/22 00:26:20] 1: contadorIdClientes:  2 
+[07/01/22 00:26:21] 1: contadorIdClientes:  2 
+[07/01/22 00:26:22] 1: contadorIdClientes:  2 
+[07/01/22 00:26:23] 1: contadorIdClientes:  2 
+[07/01/22 00:26:24] 1: contadorIdClientes:  2 
+[07/01/22 00:26:25] 1: contadorIdClientes:  2 
+[07/01/22 00:26:26] 1: contadorIdClientes:  2 
+[07/01/22 00:26:27] 1: contadorIdClientes:  2 
+[07/01/22 00:26:28] 1: contadorIdClientes:  2 
+[07/01/22 00:26:29] 1: contadorIdClientes:  2 
+[07/01/22 00:26:30] 1: contadorIdClientes:  2 
+[07/01/22 00:26:31] 1: contadorIdClientes:  2 
+[07/01/22 00:26:32] 1: contadorIdClientes:  2 
+[07/01/22 00:26:33] 1: contadorIdClientes:  2 
+[07/01/22 00:26:34] 1: contadorIdClientes:  2 
+[07/01/22 00:26:35] 1: contadorIdClientes:  2 
+[07/01/22 00:26:36] 1: contadorIdClientes:  2 
+[07/01/22 00:26:37] 1: contadorIdClientes:  2 
+[07/01/22 00:26:38] 1: contadorIdClientes:  2 
+[07/01/22 00:26:39] 1: contadorIdClientes:  2 
+[07/01/22 00:26:40] 1: contadorIdClientes:  2 
+[07/01/22 00:26:41] 1: contadorIdClientes:  2 
+[07/01/22 00:26:42] 1: contadorIdClientes:  2 
+[07/01/22 00:26:43] 1: contadorIdClientes:  2 
+[07/01/22 00:26:44] 1: contadorIdClientes:  2 
+[07/01/22 00:26:45] 1: contadorIdClientes:  2 
+[07/01/22 00:26:46] 1: contadorIdClientes:  2 
+[07/01/22 00:26:47] 1: contadorIdClientes:  2 
+[07/01/22 00:26:48] 1: contadorIdClientes:  2 
+[07/01/22 00:26:49] 1: contadorIdClientes:  2 
+[07/01/22 00:26:50] 1: contadorIdClientes:  2 
+[07/01/22 00:26:51] 1: contadorIdClientes:  2 
+[07/01/22 00:26:52] 1: contadorIdClientes:  2 
+[07/01/22 00:26:53] 1: contadorIdClientes:  2 
+[07/01/22 00:26:54] 1: contadorIdClientes:  2 
+[07/01/22 00:26:55] 1: contadorIdClientes:  2 
+[07/01/22 00:26:56] 1: contadorIdClientes:  2 
+[07/01/22 00:26:57] 1: contadorIdClientes:  2 
+[07/01/22 00:26:58] 1: contadorIdClientes:  2 
+[07/01/22 00:26:59] 1: contadorIdClientes:  2 
+[07/01/22 00:27:00] 1: contadorIdClientes:  2 
+[07/01/22 00:27:01] 1: contadorIdClientes:  2 
+[07/01/22 00:27:02] 1: contadorIdClientes:  2 
+[07/01/22 00:27:03] 1: contadorIdClientes:  2 
+[07/01/22 00:27:04] 1: contadorIdClientes:  2 
+[07/01/22 00:27:05] 1: contadorIdClientes:  2 
+[07/01/22 00:27:06] 1: contadorIdClientes:  2 
+[07/01/22 00:27:07] 1: contadorIdClientes:  2 
+[07/01/22 00:27:08] 1: contadorIdClientes:  2 
+[07/01/22 00:27:09] 1: contadorIdClientes:  2 
+[07/01/22 00:27:10] 1: contadorIdClientes:  2 
+[07/01/22 00:27:11] 1: contadorIdClientes:  2 
+[07/01/22 00:27:12] 1: contadorIdClientes:  2 
+[07/01/22 00:27:13] 1: contadorIdClientes:  2 
+[07/01/22 00:27:14] 1: contadorIdClientes:  2 
+[07/01/22 00:27:15] 1: contadorIdClientes:  2 
+[07/01/22 00:27:16] 1: contadorIdClientes:  2 
+[07/01/22 00:27:17] 1: contadorIdClientes:  2 
+[07/01/22 00:27:18] 1: contadorIdClientes:  2 
+[07/01/22 00:27:19] 1: contadorIdClientes:  2 
+[07/01/22 00:27:20] 1: contadorIdClientes:  2 
+[07/01/22 00:27:21] 1: contadorIdClientes:  2 
+[07/01/22 00:27:22] 1: contadorIdClientes:  2 
+[07/01/22 00:27:23] 1: contadorIdClientes:  2 
+[07/01/22 00:27:24] 1: contadorIdClientes:  2 
+[07/01/22 00:27:25] 1: contadorIdClientes:  2 
+[07/01/22 00:27:26] 1: contadorIdClientes:  2 
+[07/01/22 00:27:27] 1: contadorIdClientes:  2 
+[07/01/22 00:27:28] 1: contadorIdClientes:  2 
+[07/01/22 00:27:29] 1: contadorIdClientes:  2 
+[07/01/22 00:27:30] 1: contadorIdClientes:  2 
+[07/01/22 00:27:31] 1: contadorIdClientes:  2 
+[07/01/22 00:27:32] 1: contadorIdClientes:  2 
+[07/01/22 00:27:33] 1: contadorIdClientes:  2 
+[07/01/22 00:27:34] 1: contadorIdClientes:  2 
+[07/01/22 00:27:35] 1: contadorIdClientes:  2 
+[07/01/22 00:27:36] 1: contadorIdClientes:  2 
+[07/01/22 00:27:37] 1: contadorIdClientes:  2 
+[07/01/22 00:27:38] 1: contadorIdClientes:  2 
+[07/01/22 00:27:39] 1: contadorIdClientes:  2 
