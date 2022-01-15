@@ -1,55 +1,11 @@
 {
   "files": {
-    "logsPractica": [
-      {
-        "id": "bdc39fea-0e97-46af-a6f0-3bad02dc527b",
-        "line": 1,
-        "version": 1515,
-        "index": 0
-      },
-      {
-        "id": "38445981-03b3-489f-b0bc-51d30b496ef1",
-        "line": 1,
-        "version": 1515,
-        "index": 0
-      }
-    ],
     "main.c": [
       {
-        "id": "109825ee-4d28-4dfe-bb4c-dc3f9a28466b",
-        "line": 1,
-        "version": 26282,
-        "index": 0
-      },
-      {
-        "id": "97835f26-6c7d-4afe-b585-6d619bb2f23f",
-        "line": 1,
-        "version": 26282,
-        "index": 0
-      },
-      {
-        "id": "7dcf8fc5-6f73-45ec-b153-203a51f669c6",
-        "line": 1,
-        "version": 26282,
-        "index": 0
-      },
-      {
         "id": "508bc3e1-1c2a-42bb-89b1-35c418ff6f9a",
-        "line": 73,
-        "version": 26282,
-        "index": 1412
-      },
-      {
-        "id": "f977a0b9-d27a-4043-bb77-fd3da368fe81",
-        "line": 773,
-        "version": 26282,
-        "index": 18725
-      },
-      {
-        "id": "a399b340-b3ac-40ff-8bef-5a36268bfcec",
-        "line": 942,
-        "version": 26282,
-        "index": 24312
+        "line": 71,
+        "version": 29325,
+        "index": 1410
       }
     ]
   }
