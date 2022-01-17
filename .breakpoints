@@ -1,11 +1,19 @@
 {
   "files": {
+    "logsPractica": [
+      {
+        "id": "45afde63-f7f0-4977-bce5-35a240b7553e",
+        "line": 25,
+        "version": 1523,
+        "index": 1049
+      }
+    ],
     "main.c": [
       {
         "id": "508bc3e1-1c2a-42bb-89b1-35c418ff6f9a",
-        "line": 71,
-        "version": 29325,
-        "index": 1410
+        "line": 72,
+        "version": 34704,
+        "index": 1452
       }
     ]
   }
