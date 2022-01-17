@@ -648,7 +648,7 @@ void *accionesRecepcionista1(void *arg){
           }
           pthread_mutex_unlock(&semaforoCliente);       
 
-         writeLogMessageConVariable("El cliente ha sido atendido por el recepcionista uno", copiaID);
+        
 
 
           descanso1++;
@@ -753,7 +753,7 @@ void *accionesRecepcionista2(void *arg){
           }
           pthread_mutex_unlock(&semaforoCliente);     
 
-         writeLogMessageConVariable("El cliente ha sido atendido por el recepcionista dos", copiaID);
+        
 
           descanso2++;
 
@@ -836,7 +836,7 @@ void *accionesRecepcionistaVip(void *arg){
 
         pthread_mutex_unlock(&semaforoRecepcionistas);
 
-        writeLogMessageConVariable("El cliente vip ha sido atendido por el recepcionista", copiaID);
+    
         
       } else {
         
