@@ -1,55 +1,117 @@
-[17/01/22 12:18:54] 1: . 
-[17/01/22 12:18:55] 1: . 
-[17/01/22 12:18:56] 1: . 
-[17/01/22 12:18:57] 1: . 
-[17/01/22 12:18:58] 1: . 
-[17/01/22 12:18:59] 1: . 
-[17/01/22 12:19:00] 1: . 
-[17/01/22 12:19:01] 1: . 
-[17/01/22 12:19:02] 1: . 
-[17/01/22 12:19:03] 1: . 
-[17/01/22 12:19:04] 1: . 
-[17/01/22 12:19:05] 1: . 
-[17/01/22 12:19:06] 1: . 
-[17/01/22 12:19:07] 1: . 
-[17/01/22 12:19:07] 1:  ESTAMOS EN NUEVOCLIENTE ----SE LE HA PUESTO EL ID  1 
-[17/01/22 12:19:07] 1: Un cliente NORMAL ha llegado y se le asigna el ID:  1 
-[17/01/22 12:19:07] 1: ACCIONES CLIENTE numero aleatorio tomado 8 
-[17/01/22 12:19:07] 1:  Cliente puede /cansarse de la cola / quedarse e irse con recepcionistas/  16 
-[17/01/22 12:19:07] 1: EL CLIENTE SE VA A LA COLA A ESPERAR QUE LOS RECEPCIONISTAS LE LLAMEN 
-[17/01/22 12:19:07] 1: NUMEROCOLA SE HA AUMENTADO 
-[17/01/22 12:19:07] 1: NOS METEMOS EN EL PRIMER WHILE 
-[17/01/22 12:19:08] 1:  ESTAMOS EN NUEVOCLIENTE ----SE LE HA PUESTO EL ID  2 
-[17/01/22 12:19:08] 1: Un cliente NORMAL ha llegado y se le asigna el ID:  2 
-[17/01/22 12:19:08] 1: ACCIONES CLIENTE numero aleatorio tomado 9 
-[17/01/22 12:19:08] 1:  Cliente puede /cansarse de la cola / quedarse e irse con recepcionistas/  7 
-[17/01/22 12:19:08] 1: EL CLIENTE SE VA A LA COLA A ESPERAR QUE LOS RECEPCIONISTAS LE LLAMEN 
-[17/01/22 12:19:08] 1: NUMEROCOLA SE HA AUMENTADO 
-[17/01/22 12:19:08] 1: NOS METEMOS EN EL PRIMER WHILE 
-[17/01/22 12:19:08] 1: . 
-[17/01/22 12:19:08] 1: RECEPCIONISTA 1: entramos en recepcionista 1 
-[17/01/22 12:19:08] 1: RECEPCIONISTA 1: SE HACE LA COPIA DEL ID 
-[17/01/22 12:19:08] 1: RECEPCIONISTA 1: SE ELIMINA AL CLIENTE DE LA COLA 
-[17/01/22 12:19:08] 1: SALIMOS DEL PRIMER WHILE 
-[17/01/22 12:19:08] 1: LLEGA A REGULACION CLINTES 1 
-[17/01/22 12:19:08] 1: Pasamos a REGULACIONES, a ver si hay suerte 9 
-[17/01/22 12:19:08] 1: REGULACIONES El cliente lo tiene todo en orden, se va a escaleras o ascensor 
-[17/01/22 12:19:08] 1:  ESTAMOS EN NUEVOCLIENTE ----SE LE HA PUESTO EL ID  3 
-[17/01/22 12:19:08] 1: Un cliente NORMAL ha llegado y se le asigna el ID:  3 
-[17/01/22 12:19:08] 1: ACCIONES CLIENTE numero aleatorio tomado 4 
-[17/01/22 12:19:08] 1: CLIENTE ELIMINADO PORQUE SE CANSA DE ESPERAR 
-[17/01/22 12:19:08] 1: RECEPCIONISTA 1: EL CLIENTE HA SIDO ATENDIDO 2 
-[17/01/22 12:19:11] 1: HACE EL SLEEP 
-[17/01/22 12:19:11] 1: EJECUTA EL MUTEX 
-[17/01/22 12:19:11] 1: CAMBIA LAS FLAGS 
-[17/01/22 12:19:11] 1: FINAL DEL ELSE DE REGULACIONES 
-[17/01/22 12:19:11] 1: ULTIMO LOG DE REGULACION 
-[17/01/22 12:19:11] 1: LLEGA A ASCENSORES 1 
-[17/01/22 12:19:11] 1: INICIA LA FUNCION DE ASCENSOR 
-[17/01/22 12:19:11] 1: El cliente se va a ascensor. :) 
-[17/01/22 12:19:11] 1: EL CLIENTE SE HA METIDO AL ASCENSOR. HAY ESTOS CLIENTES EN EL ASCENSOR:  1 
-[17/01/22 12:19:11] 1: SALIMOS DEL PRIMER WHILE 
-[17/01/22 12:19:11] 1: LLEGA A ASCENSORES 1 
-[17/01/22 12:19:11] 1: INICIA LA FUNCION DE ASCENSOR 
-[17/01/22 12:19:11] 1: El cliente se va a ascensor. :) 
-[17/01/22 12:19:11] 1: EL CLIENTE SE HA METIDO AL ASCENSOR. HAY ESTOS CLIENTES EN EL ASCENSOR:  2 
+[17/01/22 19:31:52] 0:   
+[17/01/22 19:31:52] 1: Un cliente normal ha llegado al hotel 
+[17/01/22 19:31:52] 1: El cliente se queda en la cola de los recepcionistas 
+[17/01/22 19:31:52] 1: El recepcionista uno ha escogido un cliente 
+[17/01/22 19:31:52] 1: El cliente tiene toda la documentación en orden 
+[17/01/22 19:31:54] 1: El cliente ha sido atendido por el recepcionista uno 
+[17/01/22 19:31:54] 1: El cliente va a ascensores 
+[17/01/22 19:31:54] 1: El cliente entra en el ascensor 
+[17/01/22 19:31:59] 0:   
+[17/01/22 19:31:59] 2: Un cliente normal ha llegado al hotel 
+[17/01/22 19:31:59] 2: El cliente se queda en la cola de los recepcionistas 
+[17/01/22 19:31:59] 1: El recepcionista uno ha escogido un cliente 
+[17/01/22 19:31:59] 2: El cliente tiene toda la documentación en orden 
+[17/01/22 19:32:00] 2: El cliente ha sido atendido por el recepcionista uno 
+[17/01/22 19:32:00] 2: El cliente va a ascensores 
+[17/01/22 19:32:00] 2: El cliente entra en el ascensor 
+[17/01/22 19:32:04] 0:   
+[17/01/22 19:32:04] 3: Un cliente normal ha llegado al hotel 
+[17/01/22 19:32:04] 3: El cliente se va a maquinas de checkin 
+[17/01/22 19:32:04] 3: El cliente ha accedido a una maquina de checkin 
+[17/01/22 19:32:04] 1: Máquina de checkin utilizada 
+[17/01/22 19:32:10] 3: El cliente ha terminado de utilizar la maquina de checkin 
+[17/01/22 19:32:10] 3: El cliente va a ascensores 
+[17/01/22 19:32:10] 3: El cliente entra en el ascensor 
+[17/01/22 19:32:12] 0:   
+[17/01/22 19:32:12] 4: Un cliente normal ha llegado al hotel 
+[17/01/22 19:32:12] 4: El cliente se cansa de esperar en la cola y se va a maquinas de checkIn 
+[17/01/22 19:32:12] 4: El cliente ha accedido a una maquina de checkin 
+[17/01/22 19:32:12] 1: Máquina de checkin utilizada 
+[17/01/22 19:32:18] 4: El cliente ha terminado de utilizar la maquina de checkin 
+[17/01/22 19:32:18] 4: El cliente va a ascensores 
+[17/01/22 19:32:18] 4: El cliente entra en el ascensor 
+[17/01/22 19:32:21] 0:   
+[17/01/22 19:32:21] 5: Un cliente normal ha llegado al hotel 
+[17/01/22 19:32:21] 5: El cliente se cansa de estar en la cola, se va al baño y marcha del hotel 
+[17/01/22 19:32:26] 0:   
+[17/01/22 19:32:26] 6: Un cliente normal ha llegado al hotel 
+[17/01/22 19:32:26] 6: El cliente se queda en la cola de los recepcionistas 
+[17/01/22 19:32:26] 1: El recepcionista uno ha escogido un cliente 
+[17/01/22 19:32:26] 6: El cliente tiene toda la documentación en orden 
+[17/01/22 19:32:28] 6: El cliente va a ascensores 
+[17/01/22 19:32:28] 6: El cliente entra en el ascensor 
+[17/01/22 19:32:28] 6: El cliente ha sido atendido por el recepcionista uno 
+[17/01/22 19:32:41] 0:   
+[17/01/22 19:32:41] 7: Un cliente normal ha llegado al hotel 
+[17/01/22 19:32:41] 7: El cliente se queda en la cola de los recepcionistas 
+[17/01/22 19:32:42] 1: El recepcionista uno ha escogido un cliente 
+[17/01/22 19:32:42] 7: El cliente tiene toda la documentación en orden 
+[17/01/22 19:32:45] 7: El cliente ha sido atendido por el recepcionista uno 
+[17/01/22 19:32:45] 7: El cliente va a ascensores 
+[17/01/22 19:32:45] 7: El cliente entra en el ascensor y cierra la puerta 
+[17/01/22 19:32:45] 0: El ascensor comieza a funcionar 
+[17/01/22 19:32:49] 1: El cliente sale del ascensor 
+[17/01/22 19:32:49] 2: El cliente sale del ascensor 
+[17/01/22 19:32:49] 3: El cliente sale del ascensor 
+[17/01/22 19:32:49] 4: El cliente sale del ascensor 
+[17/01/22 19:32:49] 6: El cliente sale del ascensor 
+[17/01/22 19:32:49] 0: El ascensor ha termiando. todos los clientes han salido 
+[17/01/22 19:33:07] 0:   
+[17/01/22 19:33:07] 8: Un cliente normal ha llegado al hotel 
+[17/01/22 19:33:07] 8: El cliente se queda en la cola de los recepcionistas 
+[17/01/22 19:33:08] 1: El recepcionista uno ha escogido un cliente 
+[17/01/22 19:33:08] 8: El cliente esta mal identificado, tardará más tiempo en ser atendido 
+[17/01/22 19:33:12] 8: El cliente ha sido atendido por el recepcionista uno 
+[17/01/22 19:33:12] 8: El cliente va a ascensores 
+[17/01/22 19:33:12] 8: El cliente entra en el ascensor 
+[17/01/22 19:33:26] 0:   
+[17/01/22 19:33:26] 9: Un cliente normal ha llegado al hotel 
+[17/01/22 19:33:26] 9: El cliente se cansa de estar en la cola, se va al baño y marcha del hotel 
+[17/01/22 19:33:31] 0:   
+[17/01/22 19:33:31] 10: Un cliente normal ha llegado al hotel 
+[17/01/22 19:33:31] 10: El cliente se va a maquinas de checkin 
+[17/01/22 19:33:31] 10: El cliente ha accedido a una maquina de checkin 
+[17/01/22 19:33:31] 1: Máquina de checkin utilizada 
+[17/01/22 19:33:37] 10: El cliente ha terminado de utilizar la maquina de checkin 
+[17/01/22 19:33:37] 10: El cliente va a ascensores 
+[17/01/22 19:33:37] 10: El cliente entra en el ascensor 
+[17/01/22 19:33:41] 0:   
+[17/01/22 19:33:41] 11: Un cliente normal ha llegado al hotel 
+[17/01/22 19:33:41] 11: El cliente se cansa de esperar en la cola y se va a maquinas de checkIn 
+[17/01/22 19:33:41] 11: El cliente ha accedido a una maquina de checkin 
+[17/01/22 19:33:41] 1: Máquina de checkin utilizada 
+[17/01/22 19:33:47] 11: El cliente ha terminado de utilizar la maquina de checkin 
+[17/01/22 19:33:47] 11: El cliente va a ascensores 
+[17/01/22 19:33:47] 11: El cliente entra en el ascensor 
+[17/01/22 19:33:58] 0:   
+[17/01/22 19:33:58] 12: Un cliente normal ha llegado al hotel 
+[17/01/22 19:33:58] 12: El cliente se queda en la cola de los recepcionistas 
+[17/01/22 19:33:59] 1: El recepcionista ha atendido a 5 clientes y ahora descansa durante 5 segundos 
+[17/01/22 19:33:59] 1: El recepcionista dos ha escogido un cliente 
+[17/01/22 19:33:59] 12: El cliente tiene toda la documentación en orden 
+[17/01/22 19:34:01] 12: El cliente ha sido atendido por el recepcionista dos 
+[17/01/22 19:34:01] 12: El cliente va a ascensores 
+[17/01/22 19:34:01] 12: El cliente entra en el ascensor 
+[17/01/22 19:34:11] 0:   
+[17/01/22 19:34:11] 13: Un cliente normal ha llegado al hotel 
+[17/01/22 19:34:11] 13: El cliente se va a maquinas de checkin 
+[17/01/22 19:34:11] 13: El cliente ha accedido a una maquina de checkin 
+[17/01/22 19:34:11] 1: Máquina de checkin utilizada 
+[17/01/22 19:34:17] 13: El cliente ha terminado de utilizar la maquina de checkin 
+[17/01/22 19:34:17] 13: El cliente va a ascensores 
+[17/01/22 19:34:17] 13: El cliente entra en el ascensor 
+[17/01/22 19:34:22] 0:   
+[17/01/22 19:34:22] 14: Un cliente normal ha llegado al hotel 
+[17/01/22 19:34:22] 14: El cliente se queda en la cola de los recepcionistas 
+[17/01/22 19:34:23] 1: El recepcionista uno ha escogido un cliente 
+[17/01/22 19:34:23] 14: El cliente tiene toda la documentación en orden 
+[17/01/22 19:34:25] 14: El cliente va a ascensores 
+[17/01/22 19:34:25] 14: El cliente entra en el ascensor y cierra la puerta 
+[17/01/22 19:34:25] 0: El ascensor comieza a funcionar 
+[17/01/22 19:34:25] 14: El cliente ha sido atendido por el recepcionista uno 
+[17/01/22 19:34:30] 8: El cliente sale del ascensor 
+[17/01/22 19:34:30] 10: El cliente sale del ascensor 
+[17/01/22 19:34:30] 11: El cliente sale del ascensor 
+[17/01/22 19:34:30] 12: El cliente sale del ascensor 
+[17/01/22 19:34:30] 13: El cliente sale del ascensor 
+[17/01/22 19:34:30] 0: El ascensor ha termiando. todos los clientes han salido 
