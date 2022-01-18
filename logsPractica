@@ -1,61 +1,73 @@
-[17/01/22 19:41:06] 0:   
-[17/01/22 19:41:06] 1: Un cliente normal ha llegado al hotel 
-[17/01/22 19:41:06] 1: El cliente se queda en la cola de los recepcionistas 
-[17/01/22 19:41:06] 1: El recepcionista uno ha escogido un cliente 
-[17/01/22 19:41:06] 1: El cliente tiene toda la documentación en orden 
-[17/01/22 19:41:09] 1: El cliente ha sido atendido por el recepcionista uno 
-[17/01/22 19:41:09] 1: El cliente va a ascensores 
-[17/01/22 19:41:09] 1: El cliente entra en el ascensor 
-[17/01/22 19:41:15] 0:   
-[17/01/22 19:41:15] 2: Un cliente normal ha llegado al hotel 
-[17/01/22 19:41:15] 2: El cliente se cansa de esperar en la cola y se marcha del hotel 
-[17/01/22 19:41:21] 0:   
-[17/01/22 19:41:21] 3: Un cliente normal ha llegado al hotel 
-[17/01/22 19:41:21] 3: El cliente se queda en la cola de los recepcionistas 
-[17/01/22 19:41:21] 1: El recepcionista dos ha escogido un cliente 
-[17/01/22 19:41:21] 3: El cliente no dispone del pasaporte covid, se va del hotel 
-[17/01/22 19:41:27] 3: El cliente ha sido atendido por el recepcionista dos 
-[17/01/22 19:41:27] 3: El cliente va a ascensores 
-[17/01/22 19:41:27] 3: El cliente entra en el ascensor 
-[17/01/22 19:41:29] 0:   
-[17/01/22 19:41:29] 4: Un cliente vip ha llegado al hotel 
-[17/01/22 19:41:29] 4: El cliente se queda en la cola de los recepcionistas 
-[17/01/22 19:41:29] 3: El recepcionista VIP ha encontrado a un cliente de su tipo 
-[17/01/22 19:41:29] 4: El cliente tiene toda la documentación en orden 
-[17/01/22 19:41:30] 4: El cliente va a ascensores 
-[17/01/22 19:41:30] 4: El cliente entra en el ascensor 
-[17/01/22 19:41:30] 4: El cliente vip ha sido atendido por el recepcionista 
-[17/01/22 19:42:34] 0:   
-[17/01/22 19:42:34] 5: Un cliente vip ha llegado al hotel 
-[17/01/22 19:42:34] 5: El cliente se queda en la cola de los recepcionistas 
-[17/01/22 19:42:34] 3: El recepcionista VIP ha encontrado a un cliente de su tipo 
-[17/01/22 19:42:34] 5: El cliente tiene toda la documentación en orden 
-[17/01/22 19:42:35] 5: El cliente va a ascensores 
-[17/01/22 19:42:35] 5: El cliente entra en el ascensor 
-[17/01/22 19:42:35] 5: El cliente vip ha sido atendido por el recepcionista 
-[17/01/22 19:42:43] 0:   
-[17/01/22 19:42:43] 6: Un cliente normal ha llegado al hotel 
-[17/01/22 19:42:43] 6: El cliente se queda en la cola de los recepcionistas 
-[17/01/22 19:42:43] 1: El recepcionista dos ha escogido un cliente 
-[17/01/22 19:42:43] 6: El cliente no dispone del pasaporte covid, se va del hotel 
-[17/01/22 19:42:50] 6: El cliente ha sido atendido por el recepcionista dos 
-[17/01/22 19:42:50] 6: El cliente va a ascensores 
-[17/01/22 19:42:50] 6: El cliente entra en el ascensor 
-[17/01/22 19:43:11] 0:   
-[17/01/22 19:43:11] 7: Un cliente normal ha llegado al hotel 
-[17/01/22 19:43:11] 7: El cliente se va a maquinas de checkin 
-[17/01/22 19:43:11] 7: El cliente ha accedido a una maquina de checkin 
-[17/01/22 19:43:11] 1: Máquina de checkin utilizada 
-[17/01/22 19:43:17] 7: El cliente ha terminado de utilizar la maquina de checkin 
-[17/01/22 19:43:17] 7: El cliente va a ascensores 
-[17/01/22 19:43:17] 7: El cliente entra en el ascensor y cierra la puerta 
-[17/01/22 19:43:17] 0: El ascensor comienza a funcionar 
-[17/01/22 19:43:18] 0: Esperando a que todos los clientes se vayan para finalizar el programa 
-[17/01/22 19:43:23] 7: El cliente sale del ascensor 
-[17/01/22 19:43:23] 1: El cliente sale del ascensor 
-[17/01/22 19:43:23] 3: El cliente sale del ascensor 
-[17/01/22 19:43:23] 4: El cliente sale del ascensor 
-[17/01/22 19:43:23] 5: El cliente sale del ascensor 
-[17/01/22 19:43:23] 6: El cliente sale del ascensor 
-[17/01/22 19:43:23] 0: El ascensor ha termiando. todos los clientes han salido 
-[17/01/22 19:43:23] 0: Fin del programa 
+[18/01/22 01:11:20] 0:   
+[18/01/22 01:11:20] 1: Un cliente normal ha llegado al hotel 
+[18/01/22 01:11:20] 1: El cliente se queda en la cola de los recepcionistas 
+[18/01/22 01:11:21] 1: El recepcionista uno ha escogido un cliente 
+[18/01/22 01:11:21] 1: El cliente tiene toda la documentación en orden 
+[18/01/22 01:11:23] 1: El cliente va a ascensores 
+[18/01/22 01:11:23] 1: El cliente entra en el ascensor 
+[18/01/22 01:11:31] 0:   
+[18/01/22 01:11:31] 2: Un cliente normal ha llegado al hotel 
+[18/01/22 01:11:31] 2: El cliente se queda en la cola de los recepcionistas 
+[18/01/22 01:11:32] 1: El recepcionista uno ha escogido un cliente 
+[18/01/22 01:11:32] 2: El cliente tiene toda la documentación en orden 
+[18/01/22 01:11:34] 2: El cliente va a ascensores 
+[18/01/22 01:11:34] 2: El cliente entra en el ascensor 
+[18/01/22 01:11:40] 0:   
+[18/01/22 01:11:40] 3: Un cliente normal ha llegado al hotel 
+[18/01/22 01:11:40] 3: El cliente se queda en la cola de los recepcionistas 
+[18/01/22 01:11:41] 1: El recepcionista uno ha escogido un cliente 
+[18/01/22 01:11:41] 3: El cliente tiene toda la documentación en orden 
+[18/01/22 01:11:43] 3: El cliente va a ascensores 
+[18/01/22 01:11:43] 3: El cliente entra en el ascensor 
+[18/01/22 01:11:56] 0:   
+[18/01/22 01:11:56] 4: Un cliente normal ha llegado al hotel 
+[18/01/22 01:11:56] 4: El cliente se queda en la cola de los recepcionistas 
+[18/01/22 01:11:57] 1: El recepcionista uno ha escogido un cliente 
+[18/01/22 01:11:57] 4: El cliente tiene toda la documentación en orden 
+[18/01/22 01:12:00] 4: El cliente va a ascensores 
+[18/01/22 01:12:00] 4: El cliente entra en el ascensor 
+[18/01/22 01:13:04] 0:   
+[18/01/22 01:13:04] 5: Un cliente normal ha llegado al hotel 
+[18/01/22 01:13:04] 5: El cliente se queda en la cola de los recepcionistas 
+[18/01/22 01:13:04] 1: El recepcionista dos ha escogido un cliente 
+[18/01/22 01:13:04] 5: El cliente tiene toda la documentación en orden 
+[18/01/22 01:13:08] 5: El cliente va a ascensores 
+[18/01/22 01:13:08] 5: El cliente entra en el ascensor 
+[18/01/22 01:13:14] 0:   
+[18/01/22 01:13:14] 6: Un cliente normal ha llegado al hotel 
+[18/01/22 01:13:14] 6: El cliente se queda en la cola de los recepcionistas 
+[18/01/22 01:13:14] 1: El recepcionista dos ha escogido un cliente 
+[18/01/22 01:13:14] 6: El cliente esta mal identificado, tardará más tiempo en ser atendido 
+[18/01/22 01:13:16] 6: El cliente va a ascensores 
+[18/01/22 01:13:16] 6: El cliente entra en el ascensor y cierra la puerta 
+[18/01/22 01:13:16] 0: El ascensor comienza a funcionar 
+[18/01/22 01:13:19] 6: El cliente sale del ascensor 
+[18/01/22 01:13:22] 1: El cliente sale del ascensor 
+[18/01/22 01:13:25] 2: El cliente sale del ascensor 
+[18/01/22 01:13:28] 3: El cliente sale del ascensor 
+[18/01/22 01:13:31] 4: El cliente sale del ascensor 
+[18/01/22 01:13:34] 5: El cliente sale del ascensor 
+[18/01/22 01:13:34] 0: El ascensor ha termiando. todos los clientes han salido 
+[18/01/22 01:13:41] 0:   
+[18/01/22 01:13:41] 7: Un cliente normal ha llegado al hotel 
+[18/01/22 01:13:41] 7: El cliente se queda en la cola de los recepcionistas 
+[18/01/22 01:13:41] 1: El recepcionista uno ha escogido un cliente 
+[18/01/22 01:13:41] 7: El cliente tiene toda la documentación en orden 
+[18/01/22 01:13:44] 7: El cliente va a ascensores 
+[18/01/22 01:13:44] 7: El cliente entra en el ascensor 
+[18/01/22 01:13:51] 0:   
+[18/01/22 01:13:51] 8: Un cliente vip ha llegado al hotel 
+[18/01/22 01:13:51] 8: El cliente se cansa de estar en la cola, se va al baño y marcha del hotel 
+[18/01/22 01:14:10] 0:   
+[18/01/22 01:14:10] 9: Un cliente vip ha llegado al hotel 
+[18/01/22 01:14:10] 9: El cliente se cansa de esperar en la cola y se marcha del hotel 
+[18/01/22 01:14:14] 0:   
+[18/01/22 01:14:14] 10: Un cliente vip ha llegado al hotel 
+[18/01/22 01:14:14] 10: El cliente se queda en la cola de los recepcionistas 
+[18/01/22 01:14:15] 1: El recepcionista ha atendido a 5 clientes y ahora descansa durante 5 segundos 
+[18/01/22 01:14:44] 0:   
+[18/01/22 01:14:44] 11: Un cliente vip ha llegado al hotel 
+[18/01/22 01:14:44] 11: El cliente se queda en la cola de los recepcionistas 
+[18/01/22 01:15:07] 0:   
+[18/01/22 01:15:07] 12: Un cliente vip ha llegado al hotel 
+[18/01/22 01:15:07] 12: El cliente se queda en la cola de los recepcionistas 
